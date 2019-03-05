@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sugar Level</title>
+</head>
+<body>
+<img src="{{ image }}" alt=""/>
+
+    <form method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Submit">
+
+{% if not user.is_authenticated %}
+    <p>You are not logged in</p>
+  <a href="{% url 'login' %}">login</a>
+
+{% endif %}
+</body>
+</html>
