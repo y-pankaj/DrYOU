@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'blog',
 ]
 
 MIDDLEWARE = [
@@ -54,7 +55,9 @@ ROOT_URLCONF = 'DrYOU.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'main/templates')]
+        'DIRS': [os.path.join(BASE_DIR, 'main/templates'),
+                 os.path.join(BASE_DIR, 'blog/templates'),
+                 ]
         ,
         'APP_DIRS': True,
         'OPTIONS': {
