@@ -63,16 +63,30 @@
                 </div>
                 <nav id="nav-menu-container">
                     <ul class="nav-menu">
-                        <li class="menu-active"><a href="index.html">Home</a></li>
+                        <li class="menu-active"><a href="{% url 'home' %}">Home</a></li>
                         <li class="menu-has-children"><a href="">blog</a>
                             <ul>
-                                <li><a href="blog-home.html">blog home</a></li>
-                                <li><a href="blog-details.html">Write Blog</a></li>
+                                <li><a href="{% url 'post_all' %}">blog home</a></li>
+                                <li><a href="{% url 'post_new' %}">Write Blog</a></li>
                             </ul>
                         </li>
-                        <li><a href="https://dryou.azurewebsites.net/">Chat</a></li>
-                        <li><a href="/accounts/login/">Login/Register</a></li>
 
+                        {% if user.is_authenticated %}
+                        <li class="menu-has-children"><a href="">Health Manager</a>
+                            <ul>
+                                <li><a href="{% url 'sugar' %}">Manage Your Sugar</a></li>
+                                <li><a href="{% url 'bp' %}">Manage Your Blood Pressure</a></li>
+                            </ul>
+                        </li>
+                    {% endif %}
+
+                        <li><a href="https://dryou.azurewebsites.net/">Chat</a></li>
+                        {% if user.is_authenticated %}
+                        <li><a href="{% url 'logout' %}">Logout</a></li>
+                        {% else %}
+                        <li><a href="{% url 'login' %}">Login/Register</a></li>
+
+                        {% endif %}
                         <!--<li class="menu-has-children"><a href="">Login</a>
                             <ul>
                                 <li><a href="about.html">about us</a></li>

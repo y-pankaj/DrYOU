@@ -61,16 +61,31 @@
                 </div>
                 <nav id="nav-menu-container">
                     <ul class="nav-menu">
-                        <li class="menu-active"><a href="index.html">Home</a></li>
+                        <li class="menu-active"><a href="{% url 'home' %}">Home</a></li>
                         <li class="menu-has-children"><a href="">blog</a>
                             <ul>
-                                <li><a href="blog-home.html">blog home</a></li>
-                                <li><a href="blog-details.html">Write Blog</a></li>
+                                <li><a href="{% url 'post_all' %}">blog home</a></li>
+                                <li><a href="{% url 'post_new' %}">Write Blog</a></li>
                             </ul>
                         </li>
-                        <li><a href="https://dryou.azurewebsites.net/">Chat</a></li>
-                        <li><a href="/accounts/login/">Login/Register</a></li>
 
+
+                    {% if user.is_authenticated %}
+                        <li class="menu-has-children"><a href="">Health Manager</a>
+                            <ul>
+                                <li><a href="{% url 'sugar' %}">Manage Your Sugar</a></li>
+                                <li><a href="{% url 'bp' %}">Manage Your Blood Pressure</a></li>
+                            </ul>
+                        </li>
+                    {% endif %}
+
+                        <li><a href="https://dryou.azurewebsites.net/">Chat</a></li>
+                        {% if user.is_authenticated %}
+                        <li><a href="{% url 'logout' %}">Logout</a></li>
+                        {% else %}
+                        <li><a href="{% url 'login' %}">Login/Register</a></li>
+
+                        {% endif %}
                         <!--<li class="menu-has-children"><a href="">Login</a>
                             <ul>
                                 <li><a href="about.html">about us</a></li>
@@ -93,9 +108,10 @@
             <div class="row">
                 <div class="col-lg-5">
                     <h4>Caring for better life</h4>
-                    <h1>Leading the way in medical excellence</h1>
-                    <p>Earth greater grass for good. Place for divide evening yielding them that. Creeping beginning over gathered brought.</p>
-                    <a href="" class="template-btn mt-3">Register/Login</a>
+                    <h1>Register to use our services for free</h1>
+                    <p>Manage your health by entering your daily health status such as your Blood Sugar Level and your Systolic and Diastolic Blood Pressure. Our app provides interactive graph based on your health stats.</p>
+                    <p>After you Log In you will automatically find a Health Manager tab in the top right corner.</p>
+
                 </div>
             </div>
         </div>
@@ -109,30 +125,30 @@
                 <div class="col-lg-3 col-md-6">
                     <div style="padding-bottom: 80px" class="single-feature text-center item-padding">
                         <img src="{%static 'assets/images/feature1.png' %}" alt="">
-                        <h3>Chat with the AI</h3>
-                        <p class="pt-3">Get access to trusted and relevant healthcare services and information.</p>
+                        <h3>Chat with AI</h3>
+                        <p class="pt-3">Get instant help and instructions in case of emergency</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <div class="single-feature text-center item-padding mt-4 mt-md-0">
                         <img src="{%static 'assets/images/feature2.png' %}" alt="">
                         <h3>Share your Experience</h3>
-                        <p class="pt-3">Write about your medical condition and experiences, and share your knowledge with your world </p>
+                        <p class="pt-3">Write about your medical conditions or experiences, and help the world </p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <div style="padding-bottom: 110px" class="single-feature text-center item-padding mt-4 mt-lg-0">
                         <img src="/static/assets/images/feature3.png" alt="">
                         <h3>Manage your Health</h3>
-                        <p class="pt-3">Keep up-to-date record of your health</p>
+                        <p class="pt-3">Keep up-to-date record of your health status and see detailed and interactive graphs made by us</p>
 
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <div style="padding-bottom: 110px" class="single-feature text-center item-padding mt-4 mt-lg-0">
                         <img src="/static/assets/images/feature4.png" alt="">
-                        <h3>Learn from others</h3>
-                        <p class="pt-3">Learn from other people's experiences</p>
+                        <h3>Diagnose Yourself</h3>
+                        <p class="pt-3">Read the blogs written by others to know the nature of your illness. And of course avoid google search</p>
                     </div>
                 </div>
             </div>
@@ -297,7 +313,7 @@
                 <div  class="col-lg-3 col-sm-6">
                     <div  class="single-doctor mb-4 mb-lg-0">
                         <div  class="doctor-img">
-                            <img src="/static/assets/images/doctor1.jpg" alt="" class="img-fluid">
+                            <img src="/static/assets/images/profile_pic.jpeg" alt="" class="img-fluid">
                         </div>
                         <div class="content-area">
                             <div class="doctor-name text-center">
@@ -307,7 +323,7 @@
                             <div class="doctor-text text-center">
                               
                                 <ul class="doctor-icon">
-                                    <li><a href="#"><i class="fa fa-facebook"></i><a></li>
+                                    <li><a href="https://www.facebook.com/profile.php?id=100017794486144"><i class="fa fa-facebook"></i><a></li>
                                     <li><a href="#"><i class="fa fa-twitter"></i><a></li>
                                     <li><a href="#"><i class="fa fa-linkedin"></i><a></li>
                                    <!-- <li><a href="#"><i class="fa fa-pinterest"></i><a></li>-->
@@ -329,7 +345,7 @@
                             <div class="doctor-text text-center">
                                 
                                 <ul class="doctor-icon">
-                                    <li><a href="#"><i class="fa fa-facebook"></i><a></li>
+                                    <li><a href="https://www.facebook.com/shravan.nayak.5895"><i class="fa fa-facebook"></i><a></li>
                                     <li><a href="#"><i class="fa fa-twitter"></i><a></li>
                                     <li><a href="#"><i class="fa fa-linkedin"></i><a></li>
                                     <!--<li><a href="#"><i class="fa fa-pinterest"></i><a></li>-->
@@ -351,7 +367,7 @@
                             <div class="doctor-text text-center">
                                 
                                 <ul class="doctor-icon">
-                                    <li><a href="#"><i class="fa fa-facebook"></i><a></li>
+                                    <li><a href="https://www.facebook.com/chirag.agarwal.161009"><i class="fa fa-facebook"></i><a></li>
                                     <li><a href="#"><i class="fa fa-twitter"></i><a></li>
                                     <li><a href="#"><i class="fa fa-linkedin"></i><a></li>
                                     <!--<li><a href="#"><i class="fa fa-pinterest"></i><a></li>-->
