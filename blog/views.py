@@ -16,7 +16,7 @@ def post_edit(request, pk):
         if form.is_valid():
             post = form.save(commit=False)
             post.author = request.user
-            post.published_date = timezone.now()
+
             post.save()
             return redirect('post_detail', pk=post.pk)
     else:
@@ -29,7 +29,15 @@ def post_new(request):
         form = PostForm(request.POST)
         print(form.errors)
         if form.is_valid():
+            data = form.cleaned_data['text']
             post = form.save(commit=False)
+            #data = post.cleaned_data['text']
+            if len(data) < 150:
+                x = data + '...'
+            else:
+                x = data[:140] + '.....'
+
+            post.snippet = x
             post.author = request.user
             post.save()
             return redirect('post_detail', pk=post.pk)
@@ -41,3 +49,7 @@ def post_new(request):
 def post_all(request):
     posts = Post.objects.all()
     return render(request, 'post_all.html', {'posts': posts})
+
+
+def testview(request):
+    return render(request, 'blog-home.html', {'posts': Post.objects.all()})

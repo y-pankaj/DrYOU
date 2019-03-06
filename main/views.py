@@ -15,6 +15,7 @@ from .models import Diabetes
 from django.contrib.auth.models import User
 from .forms import DiabetesForm, BPForm
 from django.views.decorators.csrf import csrf_protect
+from blog.models import Post
 
 
 @csrf_protect
@@ -121,3 +122,4 @@ def DisplayViewBP(request):
 @csrf_protect
 def BaseView(request):
     return render(request, template_name='base.html')
+
