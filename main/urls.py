@@ -4,4 +4,6 @@ urlpatterns = [
     path('', views.HomePageView, name='home'),
     path('sugar_level/', views.DisplayViewSugar, name='display'),
     path('blood_pressure', views.DisplayViewBP, name='bp'),
+    path('base/',views.BaseView, name='base'),
+
 ]

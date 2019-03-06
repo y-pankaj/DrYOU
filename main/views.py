@@ -14,12 +14,16 @@ import base64
 from .models import Diabetes
 from django.contrib.auth.models import User
 from .forms import DiabetesForm, BPForm
+from django.views.decorators.csrf import csrf_protect
 
 
+@csrf_protect
 def HomePageView(request):
     template_name = 'homepage.html'
     return render(request, template_name)
 
+
+@csrf_protect
 def DisplayViewSugar(request):
     fig = Figure()
     canvas = FigureCanvas(fig)
@@ -64,6 +68,8 @@ def DisplayViewSugar(request):
 
     return render(request, "graph_sugar.html", {'image': data_url, 'form': form})
 
+
+@csrf_protect
 def DisplayViewBP(request):
     fig = Figure()
     canvas = FigureCanvas(fig)
@@ -112,3 +118,6 @@ def DisplayViewBP(request):
     return render(request, "bp.html", {'image': data_url, 'form': form})
 
 
+@csrf_protect
+def BaseView(request):
+    return render(request, template_name='base.html')
