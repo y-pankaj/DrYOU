@@ -46,7 +46,7 @@ def DisplayViewSugar(request):
     ax.plot(x, y, color='green', marker='o', linestyle='solid', linewidth=2, markersize=12, markerfacecolor='white',
             markeredgecolor='blue')
     ax.set_title('Blood Sugar Levels')
-    ax.hlines(40, 0, i, colors='b', linestyles='dashed')
+    ax.hlines(100, 0, i, colors='r', linestyles='dashed')
     ax.grid(True)
     ax.set_xlabel('Test number')
     ax.set_ylabel('Sugar Level')
@@ -95,7 +95,8 @@ def DisplayViewBP(request):
     ax.plot(x, z, color='green', marker='o', linestyle='solid', linewidth=2, markersize=12, markerfacecolor='white',
             markeredgecolor='blue')
     ax.set_title('Blood Sugar Levels')
-    ax.hlines(40, 0, i, colors='b', linestyles='dashed')
+    ax.hlines(120, 0, i, colors='r', linestyles='dashed')
+    ax.hlines(80, 0, i, colors='r', linestyles='dashed')
     ax.grid(True)
     ax.set_xlabel('Test number')
     ax.set_ylabel('Blood Pressure')
