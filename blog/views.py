@@ -1,6 +1,6 @@
 from django.utils import timezone
-from .models import Post
-from .forms import PostForm
+from .models import Post,Post1
+from .forms import PostForm,PostForm1
 from django.shortcuts import render, get_object_or_404 , redirect
 
 
@@ -30,15 +30,19 @@ def post_new(request):
         print(form.errors)
         if form.is_valid():
             data = form.cleaned_data['text']
+            lulls = form.cleaned_data['tag']
             post = form.save(commit=False)
             #data = post.cleaned_data['text']
             if len(data) < 150:
                 x = data + '...'
             else:
                 x = data[:140] + '.....'
-
+            post.tag = lulls
             post.snippet = x
-            post.author = request.user
+            try:
+                post.author = request.user
+            except:
+                return render(request, 'guide1.html')
             post.save()
             return redirect('post_detail', pk=post.pk)
     else:
@@ -47,6 +51,14 @@ def post_new(request):
 
 
 def post_all(request):
+    if request.method == "POST" :
+        form = PostForm1(request.POST)
+        if form.is_valid() :
+            lulls = form.cleaned_data['tag']
+            print(lulls)
+            posts = Post.objects.filter(tag=lulls)
+            return render(request, 'post_all.html' , {'posts' : posts})
+    print("Invalid")
     posts = Post.objects.all()
     return render(request, 'post_all.html', {'posts': posts})
 
