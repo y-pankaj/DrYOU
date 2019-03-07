@@ -16,6 +16,7 @@ from django.contrib.auth.models import User
 from .forms import DiabetesForm, BPForm
 from django.views.decorators.csrf import csrf_protect
 from blog.models import Post
+from django.contrib.auth.decorators import login_required
 
 
 @csrf_protect
@@ -23,7 +24,7 @@ def HomePageView(request):
     template_name = 'homepage.html'
     return render(request, template_name)
 
-
+@login_required
 @csrf_protect
 def DisplayViewSugar(request):
     fig = Figure()
@@ -69,7 +70,7 @@ def DisplayViewSugar(request):
 
     return render(request, "graph_sugar.html", {'image': data_url, 'form': form})
 
-
+@login_required
 @csrf_protect
 def DisplayViewBP(request):
     fig = Figure()

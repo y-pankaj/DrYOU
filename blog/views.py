@@ -2,6 +2,9 @@ from django.utils import timezone
 from .models import Post,Post1
 from .forms import PostForm,PostForm1
 from django.shortcuts import render, get_object_or_404 , redirect
+from django.contrib.auth.decorators import login_required
+
+
 
 
 def post_detail(request, pk):
@@ -23,8 +26,10 @@ def post_edit(request, pk):
         form = PostForm(instance=post)
     return render(request, 'post_edit.html', {'form': form})
 
-
+@login_required
 def post_new(request):
+    #if not request.user.is_autenticated:
+    #    return render(request, 'please_login.html')
     if request.method == "POST":
         form = PostForm(request.POST)
         print(form.errors)
@@ -39,10 +44,8 @@ def post_new(request):
                 x = data[:140] + '.....'
             post.tag = lulls
             post.snippet = x
-            try:
-                post.author = request.user
-            except:
-                return render(request, 'guide1.html')
+
+            post.author = request.user
             post.save()
             return redirect('post_detail', pk=post.pk)
     else:
@@ -53,7 +56,7 @@ def post_new(request):
 def post_all(request):
     if request.method == "POST" :
         form = PostForm1(request.POST)
-        if form.is_valid() :
+        if form.is_valid():
             lulls = form.cleaned_data['tag']
             print(lulls)
             posts = Post.objects.filter(tag=lulls)

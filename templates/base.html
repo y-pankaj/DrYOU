@@ -71,14 +71,14 @@
                             </ul>
                         </li>
 
-                        {% if user.is_authenticated %}
+
                         <li class="menu-has-children"><a href="">Health Manager</a>
                             <ul>
                                 <li><a href="{% url 'sugar' %}">Manage Your Sugar</a></li>
                                 <li><a href="{% url 'bp' %}">Manage Your Blood Pressure</a></li>
                             </ul>
                         </li>
-                    {% endif %}
+
 
                         <li><a href="https://dryou.azurewebsites.net/">Chat</a></li>
                         {% if user.is_authenticated %}

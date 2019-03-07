@@ -70,14 +70,14 @@
                         </li>
 
 
-                    {% if user.is_authenticated %}
+
                         <li class="menu-has-children"><a href="">Health Manager</a>
                             <ul>
                                 <li><a href="{% url 'sugar' %}">Manage Your Sugar</a></li>
                                 <li><a href="{% url 'bp' %}">Manage Your Blood Pressure</a></li>
                             </ul>
                         </li>
-                    {% endif %}
+
 
                         <li><a href="https://dryou.azurewebsites.net/">Chat</a></li>
                         {% if user.is_authenticated %}
@@ -110,8 +110,6 @@
                     <h4>Caring for better life</h4>
                     <h1>Register to use our services for free</h1>
                     <p>Manage your health by entering your daily health status such as your Blood Sugar Level and your Systolic and Diastolic Blood Pressure. Our app provides interactive graph based on your health stats.</p>
-                    <p>After you Log In you will automatically find a Health Manager tab in the top right corner.</p>
-
                 </div>
             </div>
         </div>
