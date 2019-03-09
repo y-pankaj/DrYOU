@@ -68,7 +68,7 @@ def DisplayViewSugar(request):
     else:
         form = DiabetesForm()
 
-    return render(request, "graph_sugar.html", {'image': data_url, 'form': form})
+    return render(request, "graph_sugar.html", {'image': data_url, 'form': form, 'x': x, 'y': y, 'l': i})
 
 @login_required
 @csrf_protect
