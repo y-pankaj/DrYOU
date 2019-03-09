@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'blog',
     'accounts.apps.AccountsConfig',
     'main',
-    'profiles',
     'pwa',
 ]
 
