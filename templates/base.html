@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+{% load pwa %}
 <head>
+    {% progressive_web_app_meta %}
     <!-- Required Meta Tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -41,7 +43,7 @@
                         <li class="menu-active"><a href="{% url 'home' %}">Home</a></li>
                         <li class="menu-has-children"><a href="">blog</a>
                             <ul>
-                                <li><a href="{% url 'post_all' %}">blog home</a></li>
+                                <li><a href="{% url 'post_all' %}">MediQuora</a></li>
                                 <li><a href="{% url 'post_new' %}">Write Blog</a></li>
                             </ul>
                         </li>
